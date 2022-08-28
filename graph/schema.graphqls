@@ -1,0 +1,29 @@
+directive @goField(
+    forceResolver: Boolean
+    name: String
+) on INPUT_FIELD_DEFINITION | FIELD_DEFINITION
+
+directive @goEmbedHelper on OBJECT
+
+type Todo {
+  id: ID!
+  text: String!
+  done: Boolean!
+}
+
+type People {
+  id: ID!
+  name: String!
+}
+
+type User {
+  id: ID!
+  name: String!
+  todos:  [Todo]   @goField(forceResolver: true)
+  people: [People] @goField(forceResolver: true)
+  inflow: Int!     @goField(forceResolver: true) 
+}
+
+type Query {
+  getUsers(id: String!): [User]!
+}

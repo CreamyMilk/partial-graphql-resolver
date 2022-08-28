@@ -1,0 +1,1 @@
+# partial-graphql-resolver
